@@ -1,13 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Project</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Mini project</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+
 <body>
-    <h1>Hello</h1>
-    <script src="/javascripts/script.js"></script>
+    <div class="main w-full min-h-screen bg-zinc-900">
+        <div class="form p-10 text-white">
+            <form action="/create" method="post">
+                <input class="block w-full rounded-md outline-none bg-zinc-800 px-5 py-2" type="text"
+                    placeholder="Title of the task" name="title">
+                <textarea class="block w-full rounded-md outline-none bg-zinc-800 px-5 py-2 mt-5 resize-none"
+                    placeholder="Deatil about your task" name="detail"></textarea>
+                <input class="bg-blue-500 px-5 py-2 mt-2 rounded-md" type="submit" value="Create Task">
+            </form>
+        </div>
+
+        <!-- Task div -->
+
+        <div class="tasks p-10 text-white flex gap-3 flex-wrap">
+            <% if(files.length>0){ %>
+                <% files.forEach(function(file){ %>
+                    <div class="task min-w-72 px-3 py-4 rounded-md bg-zinc-800">
+                        <h1 class="text-3xl tracking-tighter">
+                            <%=file.replace('.txt','')%>
+                        </h1>
+                        <div class="content flex justify-between items-center  mt-3">
+                            <a href="/files/<%=file%>" class="text-blue-500 inline-block">Read More...</a>
+                            <a class="bg-zinc-500 text-white px-2 rounded-md" href="/files/edit/<%=file%>">Edit Title</a>
+                        </div>
+
+                    </div>
+                    <% }) %>
+                        <% } else{ %>
+                            <h3 class="text-zinc-500">No Task Yet...</h3>
+                            <% } %>
+
+
+
+        </div>
+    </div>
 </body>
+
 </html>
